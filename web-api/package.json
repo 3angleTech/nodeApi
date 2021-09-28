@@ -6,8 +6,6 @@
   "scripts": {
     "build": "rimraf ./dist && tsc --project ./src/tsconfig.app.json",
     "build-spec": "rimraf ./dist && tsc --project ./src/tsconfig.spec.json",
-    "lint": "tslint --format stylish --project ./src/tsconfig.app.json --project ./src/tsconfig.spec.json",
-    "lint-ci": "tslint --format stylish --config ./tslint.ci.json --project ./src/tsconfig.app.json --project ./src/tsconfig.spec.json",
     "mocha": "NODE_ENV=test mocha dist/**/*.spec.js --exit",
     "prepare-db": "sequelize db:migrate && sequelize db:seed:all",
     "prepare-db-and-start": "npm run prepare-db && npm run start",
@@ -50,7 +48,6 @@
     "sequelize": "5.21.5"
   },
   "devDependencies": {
-    "@3angletech/tslint": "1.1.0",
     "@types/bcrypt": "3.0.0",
     "@types/body-parser": "1.19.0",
     "@types/chai": "4.2.11",
@@ -67,9 +64,6 @@
     "nyc": "15.0.0",
     "rimraf": "3.0.2",
     "sequelize-cli": "5.5.1",
-    "tslint": "5.20.1",
-    "tslint-microsoft-contrib": "6.2.0",
-    "tslint-sonarts": "1.9.0",
     "typescript": "3.7.5"
   },
   "engines": {
