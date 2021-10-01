@@ -7,7 +7,7 @@
 import { inject, injectable } from 'inversify';
 import { sign as signToken, verify as verifyToken } from 'jsonwebtoken';
 import { IConfigurationService, OAuthConfiguration } from '../../../common/configuration';
-import { IJwtTokenService, TokenGenerateOptions, TokenPayload } from './jwt-token.service.interface';
+import { IJwtTokenService, isTokenPayload, TokenGenerateOptions, TokenPayload } from './jwt-token.service.interface';
 
 @injectable()
 export class JwtTokenService implements IJwtTokenService {
@@ -40,7 +40,10 @@ export class JwtTokenService implements IJwtTokenService {
   }
 
   public verify(token: string, clientSecret: string): Promise<TokenPayload> {
-    const decoded = <any>verifyToken(token, clientSecret);
+    const decoded = verifyToken(token, clientSecret);
+    if (!isTokenPayload(decoded)) {
+      throw new Error('Invalid token payload.');
+    }
     return Promise.resolve(decoded);
   }
 

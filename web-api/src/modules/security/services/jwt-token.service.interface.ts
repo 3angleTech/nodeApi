@@ -20,6 +20,19 @@ export interface TokenPayload {
   expiresAt: Date;
 }
 
+export function isTokenPayload(value: unknown): value is TokenPayload {
+  if (typeof value !== 'object' || value === null) {
+    return false;
+  }
+
+  const keys = Object.keys(value);
+  return keys.includes('userId') &&
+    keys.includes('clientId') &&
+    keys.includes('grants') &&
+    keys.includes('issuer') &&
+    keys.includes('expiresAt');
+}
+
 /**
  * Performs actions related to the JWT token.
  */
