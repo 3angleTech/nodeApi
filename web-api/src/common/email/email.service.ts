@@ -38,7 +38,7 @@ export class EmailService implements IEmailService {
       to: to,
       from: from,
       templateId: templateId,
-      dynamic_template_data: templateParameters,
+      dynamic_template_data: { ...templateParameters },
     };
 
     await this.sendEmail(email);
@@ -51,7 +51,7 @@ export class EmailService implements IEmailService {
       to: to,
       from: from,
       templateId: templateId,
-      dynamic_template_data: templateParameters,
+      dynamic_template_data: { ...templateParameters },
     };
 
     await this.sendEmail(email);
