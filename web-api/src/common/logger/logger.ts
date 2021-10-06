@@ -7,13 +7,10 @@
 import { isNil } from '../utils';
 import { ILogger, LogLevel } from './logger.interface';
 
-/* tslint:disable:no-console */
+/* eslint-disable no-console */
 export class Logger implements ILogger {
   private static instance: Logger;
 
-  constructor() { }
-
-  // tslint:disable-next-line:function-name
   public static getInstance(): ILogger {
     if (isNil(Logger.instance)) {
       Logger.instance = new Logger();

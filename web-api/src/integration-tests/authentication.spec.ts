@@ -3,8 +3,6 @@
  * Copyright (c) 2018 THREEANGLE SOFTWARE SOLUTIONS SRL
  * Available under MIT license webApi/LICENSE
  */
-
-// tslint:disable:no-duplicate-imports
 import * as chai from 'chai';
 import { assert, expect } from 'chai';
 import chaiHttp = require('chai-http');

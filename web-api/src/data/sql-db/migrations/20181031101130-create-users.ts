@@ -7,7 +7,6 @@
 import { BOOLEAN, DATE, INTEGER, QueryInterface, STRING } from 'sequelize';
 
 module.exports = {
-  // tslint:disable-next-line:max-func-body-length
   up: async (queryInterface: QueryInterface): Promise<void> => {
     return queryInterface.createTable('users', {
       id: {

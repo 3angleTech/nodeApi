@@ -8,13 +8,13 @@ import { Response } from 'express';
 
 import { User } from '../data';
 
-// tslint:disable-next-line:interface-name
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export interface UserContext {
   user: User;
 }
 
-// tslint:disable-next-line:interface-name
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export interface AppResponse extends Response {
-  // tslint:disable-next-line:prefer-method-signature
+  // eslint-disable-next-line @typescript-eslint/method-signature-style
   getUserContext: () => UserContext;
 }

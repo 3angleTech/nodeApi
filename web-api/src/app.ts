@@ -33,6 +33,7 @@ export class App {
 
   /**
    * Configure server to deal with CORS.
+   *
    * @see: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
    */
   private enableCORS(): void {
@@ -86,7 +87,6 @@ export class App {
     });
   }
 
-  // tslint:disable-next-line:max-func-body-length
   private registerRoutes(): void {
     const router: Router = createExpressRouter();
 

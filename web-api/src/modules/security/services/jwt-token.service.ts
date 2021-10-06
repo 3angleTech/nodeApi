@@ -23,7 +23,7 @@ export class JwtTokenService implements IJwtTokenService {
 
   public generate(options: TokenGenerateOptions): Promise<string> {
     const expiresAt = new Date(
-      // tslint:disable-next-line:no-magic-numbers
+      // eslint-disable-next-line no-magic-numbers
       new Date().getTime() + (options.expirySeconds * 1000),
     );
     const payload: TokenPayload = {

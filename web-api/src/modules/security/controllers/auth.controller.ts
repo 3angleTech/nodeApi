@@ -3,7 +3,6 @@
  * Copyright (c) 2019 THREEANGLE SOFTWARE SOLUTIONS SRL
  * Available under MIT license webApi/LICENSE
  */
-/* tslint:disable:max-file-line-count */
 import { NextFunction } from 'express';
 import { inject, injectable } from 'inversify';
 
@@ -34,6 +33,7 @@ import {
 @injectable()
 export class AuthController implements IAuthController {
 
+  // eslint-disable-next-line max-params
   constructor(
     @inject(IAccountService) private accountService: IAccountService,
     @inject(IConfigurationService) private configuration: IConfigurationService,
@@ -65,7 +65,6 @@ export class AuthController implements IAuthController {
     }
   }
 
-  // tslint:disable-next-line:max-func-body-length
   public async token(req: AppRequest, res: AppResponse, next: NextFunction): Promise<void> {
     const isRefreshTokenRequest = req.body.grant_type === refreshTokenGrantName;
     // Automatically set the accessToken and refreshToken for clients using HttpOnly cookies.

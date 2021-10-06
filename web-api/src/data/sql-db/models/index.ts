@@ -18,8 +18,8 @@ const db: any = {};
 fs
   .readdirSync(__dirname)
   .filter(file => {
-  // tslint:disable-next-line:no-magic-numbers
-  return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
+    // eslint-disable-next-line no-magic-numbers
+    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
   })
   .forEach(file => {
     const model = sequelize['import'](path.join(__dirname, file));
