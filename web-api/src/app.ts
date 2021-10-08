@@ -34,7 +34,7 @@ export class App {
   /**
    * Configure server to deal with CORS.
    *
-   * @see: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+   * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
    */
   private enableCORS(): void {
     this.express.all('/*', (req: Request, res: Response, next: NextFunction): void => {

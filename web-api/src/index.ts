@@ -14,5 +14,6 @@ appFactory().listen(port).on('listening', (): void => {
   Logger.getInstance().log(LogLevel.Info, `Server is listening on port ${port}`);
 }).on('error', (err: any): void => {
   Logger.getInstance().log(LogLevel.Error, 'The server could not be started.', err);
-  process.exit(1);
+  const errorCode = 1;
+  process.exit(errorCode);
 });

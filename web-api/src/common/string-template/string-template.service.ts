@@ -20,6 +20,7 @@ export interface IStringTemplateService {
    */
   interpolate(template: string, parameters: Record<string, string | number>): string;
 }
+// eslint-disable-next-line no-redeclare
 export const IStringTemplateService = Symbol.for('IStringTemplateService');
 
 @injectable()
@@ -29,11 +30,11 @@ export class StringTemplateService implements IStringTemplateService {
   public interpolate(template: string, parameters: Record<string, string | number>): string {
     this.validateTemplateAndParameters(template, parameters);
 
-    return template.replace(this.PLACEHOLDER_VARIABLE_FORMAT_REG_EXP, (formatItem: string, actualKey: string) => {
+    return template.replace(this.PLACEHOLDER_VARIABLE_FORMAT_REG_EXP, (formatItem: string, actualKey: string): string => {
       if (isNil(parameters, actualKey)) {
         return '';
       }
-      return parameters[actualKey];
+      return `${parameters[actualKey]}`;
     });
   }
 
@@ -59,7 +60,7 @@ export class StringTemplateService implements IStringTemplateService {
         console.warn(`Parameter "${key}" is not defined in the template "${template}"`);
       }
       if (isNil(normalizedParameters[key])) {
-        console.warn(`Placeholder variable \{{${key}\}} from template "${template}" is not defined
+        console.warn(`Placeholder variable {{${key}}} from template "${template}" is not defined
         in parameters list ${JSON.stringify(parameterList)}`);
       }
     });

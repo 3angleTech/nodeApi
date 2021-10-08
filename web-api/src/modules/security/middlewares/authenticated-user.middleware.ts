@@ -14,6 +14,7 @@ import {
   refreshTokenCookieName,
 } from '../controllers/auth.controller.interface';
 
+// eslint-disable-next-line max-statements
 export async function authenticatedUserMiddleware(req: AppRequest, res: AppResponse, next: NextFunction): Promise<void> {
   // When accessToken is sent via cookie, we initialize the authorization header used by the oauth middleware
   const accessToken = req.cookies[accessTokenCookieName];

@@ -6,6 +6,7 @@
 
 import { inject, injectable } from 'inversify';
 import { UpdateOptions } from 'sequelize';
+import { WhereValue } from 'sequelize/types/lib/model';
 
 import { IConfigurationService, OAuthConfiguration } from '../../../common/configuration';
 import { encrypt, verify } from '../../../common/crypto';
@@ -20,6 +21,7 @@ import { IJwtTokenService } from './jwt-token.service.interface';
 
 @injectable()
 export class AccountService implements IAccountService {
+  // eslint-disable-next-line max-params
   constructor(
     @inject(IDatabaseContext) private dbContext: IDatabaseContext,
     @inject(IJsonConverterService) private jsonConverter: IJsonConverterService,
@@ -72,7 +74,7 @@ export class AccountService implements IAccountService {
     return this.jsonConverter.deserialize(userObject, User);
   }
 
-  public async findByField(field: string, value: any): Promise<User> {
+  public async findByField(field: string, value: WhereValue): Promise<User> {
     const userObject = await this.dbContext.getModel(DatabaseModel.Users).findOne({
       where: {
         [field]: value,
@@ -100,19 +102,21 @@ export class AccountService implements IAccountService {
       returning: true,
     };
     const result = await this.dbContext.getModel(DatabaseModel.Users).update(userPartial, updateOptions);
-    const affectedRows: User[] = result[1];
+    const resultIndex = 1;
+    const affectedRows: User[] = result[resultIndex];
     if (isNil(affectedRows)) {
       throw new Error(`User not found (ID = ${jwtToken.userId})`);
     }
   }
 
-  public async generateActivationToken(user: User): Promise<string> {
+  public generateActivationToken(user: User): Promise<string> {
+    const clientIndex = 0;
     return this.tokenService.generate({
       userId: user.id,
-      clientId: this.oauthConfig.clients[0].id,
+      clientId: this.oauthConfig.clients[clientIndex].id,
       clientSecret: this.oauthConfig.accessTokenSecret,
-      expirySeconds: this.oauthConfig.clients[0].accessTokenExpirySeconds,
-      grants: this.oauthConfig.clients[0].grants,
+      expirySeconds: this.oauthConfig.clients[clientIndex].accessTokenExpirySeconds,
+      grants: this.oauthConfig.clients[clientIndex].grants,
     });
   }
 
@@ -161,8 +165,7 @@ export class AccountService implements IAccountService {
   }
 
   private prepareUserPartialForUpdate(userPartial: Partial<User>, updatedBy: number): void {
-    const currentDate: Date = new Date();
-    userPartial.updatedAt = currentDate;
+    userPartial.updatedAt = new Date();
 
     userPartial.updatedBy = updatedBy;
 

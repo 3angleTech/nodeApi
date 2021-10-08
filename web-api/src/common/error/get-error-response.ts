@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/dot-notation */
 /**
  * @license
  * Copyright (c) 2020 THREEANGLE SOFTWARE SOLUTIONS SRL

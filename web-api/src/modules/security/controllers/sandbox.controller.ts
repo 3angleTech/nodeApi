@@ -33,6 +33,7 @@ export const ISandboxController = Symbol.for('ISandboxController');
 
 @injectable()
 export class SandboxController implements ISandboxController {
+  // eslint-disable-next-line max-params
   constructor(
     @inject(IEmailService) private emailService: IEmailService,
     @inject(IConfigurationService) private configuration: IConfigurationService,

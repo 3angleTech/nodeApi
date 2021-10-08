@@ -3,6 +3,7 @@
  * Copyright (c) 2019 THREEANGLE SOFTWARE SOLUTIONS SRL
  * Available under MIT license webApi/LICENSE
  */
+/* eslint-disable max-lines */
 import { NextFunction } from 'express';
 import { inject, injectable } from 'inversify';
 
@@ -65,6 +66,7 @@ export class AuthController implements IAuthController {
     }
   }
 
+  // eslint-disable-next-line max-statements
   public async token(req: AppRequest, res: AppResponse, next: NextFunction): Promise<void> {
     const isRefreshTokenRequest = req.body.grant_type === refreshTokenGrantName;
     // Automatically set the accessToken and refreshToken for clients using HttpOnly cookies.
@@ -181,7 +183,6 @@ export class AuthController implements IAuthController {
       });
 
       if (isNil(userObject)) {
-        // TODO: Refactor message to avoid disclosing user account existence via forgot password requests.
         return next(new InvalidRequestError({
           message: 'Invalid email.',
           name: 'INVALID_EMAIL',
@@ -222,13 +223,14 @@ export class AuthController implements IAuthController {
     });
   }
 
-  private async generateAccessToken(user: User): Promise<string> {
+  private generateAccessToken(user: User): Promise<string> {
+    const clientIndex = 0;
     return this.tokenService.generate({
       userId: user.id,
-      clientId: this.oauthConfig.clients[0].id,
+      clientId: this.oauthConfig.clients[clientIndex].id,
       clientSecret: this.oauthConfig.accessTokenSecret,
-      expirySeconds: this.oauthConfig.clients[0].accessTokenExpirySeconds,
-      grants: this.oauthConfig.clients[0].grants,
+      expirySeconds: this.oauthConfig.clients[clientIndex].accessTokenExpirySeconds,
+      grants: this.oauthConfig.clients[clientIndex].grants,
     });
   }
 

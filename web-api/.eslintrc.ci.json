@@ -5,6 +5,7 @@
   "rules": {
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/naming-convention": "off",
+    "@typescript-eslint/prefer-readonly": "off",
     "import/no-cycle": "off",
     "import/order": "off",
     "no-redeclare": "off",

@@ -3,7 +3,7 @@
  * Copyright (c) 2019 THREEANGLE SOFTWARE SOLUTIONS SRL
  * Available under MIT license webApi/LICENSE
  */
-
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Algorithm } from 'jsonwebtoken';
 
 /**
@@ -35,6 +35,7 @@ export interface OAuthConfiguration {
 export interface EmailConfiguration {
   provider: string;
   from: string;
+  // eslint-disable-next-line no-use-before-define
   templateIds: EmailTemplateIds;
 }
 
@@ -74,4 +75,5 @@ export interface IConfigurationService {
    */
   getEmailConfig(): EmailConfiguration;
 }
+// eslint-disable-next-line no-redeclare
 export const IConfigurationService = Symbol.for('IConfigurationService');

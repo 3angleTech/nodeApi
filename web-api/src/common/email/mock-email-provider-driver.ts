@@ -11,10 +11,6 @@ import { Email } from './email.service.interface';
 
 @injectable()
 export class MockEmailProviderDriver implements IEmailProviderDriver {
-
-  constructor() {
-  }
-
   public sendEmail(email: Email): Promise<void> {
     // eslint-disable-next-line no-console
     console.log(email);
