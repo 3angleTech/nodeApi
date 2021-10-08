@@ -22,9 +22,9 @@ function getStatusFromError(err: unknown): number {
     if (err.hasOwnProperty('status') && typeof err['status'] === 'number') {
     return err['status'];
   } else if (err.hasOwnProperty('statusCode') && typeof err['statusCode'] === 'number') {
-    return err['status'];
+    return err['statusCode'];
   } else if (err.hasOwnProperty('code') && typeof err['code'] === 'number') {
-    return err['status'];
+    return err['code'];
   }
 
   return HttpStatus.INTERNAL_SERVER_ERROR;
