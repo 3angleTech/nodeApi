@@ -44,6 +44,7 @@ export interface EmailConfiguration {
 export interface EmailTemplateIds {
   accountActivation: string;
   forgotPassword: string;
+  newAccount: string;
 }
 
 /**

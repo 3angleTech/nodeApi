@@ -11,7 +11,8 @@ export interface Email {
   to: string;
   from: string;
   templateId: string;
-  dynamic_template_data: any;
+  // eslint-disable-next-line camelcase
+  dynamic_template_data: Record<string, string | number>;
 }
 
 /**
