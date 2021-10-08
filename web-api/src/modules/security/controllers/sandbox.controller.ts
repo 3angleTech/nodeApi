@@ -21,6 +21,7 @@ import { IJwtTokenService } from '../services/jwt-token.service.interface';
 export interface ISandboxController {
   /**
    * Sends a sample activation email.
+   *
    * @param req Request object data.
    * @param res Response object data.
    * @param next Middleware function to be called.

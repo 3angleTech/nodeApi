@@ -38,16 +38,20 @@ export class StringTemplateService implements IStringTemplateService {
   }
 
   private validateTemplateAndParameters(template: string, parameters: Record<string, string | number>): void {
-    const normalizedParameters = (parameters) ? parameters : {};
+    const normalizedParameters = (parameters) || {};
 
     const parameterList = Object.keys(normalizedParameters);
     const pVariableFormatList = template.match(this.PLACEHOLDER_VARIABLE_FORMAT_REG_EXP);
 
     const DEFINED = 1;
     const pVariableDict = {};
-    const pVariableList = map(pVariableFormatList, vf => this.parsePlaceholderVariableFormat(vf));
+    const pVariableList = map(pVariableFormatList, vf => {
+      return this.parsePlaceholderVariableFormat(vf);
+    });
 
-    forEach(pVariableList, p => { pVariableDict[p] = DEFINED; });
+    forEach(pVariableList, p => {
+      pVariableDict[p] = DEFINED;
+    });
 
     const keyList = union(pVariableList, parameterList);
     forEach(keyList, key => {

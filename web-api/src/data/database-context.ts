@@ -3,14 +3,14 @@
  * Copyright (c) 2018 THREEANGLE SOFTWARE SOLUTIONS SRL
  * Available under MIT license webApi/LICENSE
  */
-import { isNil } from '../common/utils';
-
-const models = require('./sql-db/models');
 
 import { injectable } from 'inversify';
 import { ModelCtor, Sequelize, ValidationError } from 'sequelize';
+import { isNil } from '../common/utils';
 import { Logger, LogLevel } from '../common/logger';
 import { DatabaseModel, IDatabaseContext } from './database-context.interface';
+
+const models = require('./sql-db/models');
 
 @injectable()
 export class DatabaseContext implements IDatabaseContext {

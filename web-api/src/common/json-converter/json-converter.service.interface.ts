@@ -10,6 +10,7 @@
 export interface IJsonConverterService {
   /**
    * Deserializes a JSON object into another object.
+   *
    * @param json The JSON object.
    * @param classReference The class reference of the expected object.
    */

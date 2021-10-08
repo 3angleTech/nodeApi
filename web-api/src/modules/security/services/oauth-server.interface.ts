@@ -13,6 +13,7 @@ import { AppRequest, AppResponse } from '../../../core';
 export interface IOAuthServer {
   /**
    * Implementats token actions.
+   *
    * @param req Request object data.
    * @param res Response object data.
    */
@@ -20,6 +21,7 @@ export interface IOAuthServer {
 
   /**
    * Implements authentication mechanism.
+   *
    * @param req Request object data.
    * @param res Response object data.
    */

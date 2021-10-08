@@ -15,7 +15,7 @@ import {
 } from '../controllers/auth.controller.interface';
 
 export async function authenticatedUserMiddleware(req: AppRequest, res: AppResponse, next: NextFunction): Promise<void> {
-  // when accessToken is sent via cookie, we initialize the authorization header used by the oauth middleware
+  // When accessToken is sent via cookie, we initialize the authorization header used by the oauth middleware
   const accessToken = req.cookies[accessTokenCookieName];
   if (isNil(accessToken)) {
     res.clearCookie(accessTokenCookieName);

@@ -13,6 +13,7 @@ export interface IEmailProviderDriver {
 
   /**
    * Sends the email.
+   *
    * @param email The target email.
    */
   sendEmail(email: Email): Promise<void>;

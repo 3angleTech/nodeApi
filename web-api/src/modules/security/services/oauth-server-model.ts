@@ -89,7 +89,9 @@ export class OAuthServerModel implements IOAuthServerModel {
   }
 
   public getClient(clientId: string, clientSecret: string): Promise<Client> {
-    const client = find(this.oauthConfig.clients, c => c.id === clientId);
+    const client = find(this.oauthConfig.clients, c => {
+      return c.id === clientId;
+    });
     if (isNil(client)) {
       throw new Error(`Client with id ${clientId} not found`);
     }

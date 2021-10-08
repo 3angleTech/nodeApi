@@ -19,6 +19,7 @@ export const authenticatedCookieName: string = 'authenticated';
 export interface IAuthController {
   /**
    * Provides the logic for the activation of an account.
+   *
    * @param req Request object data.
    * @param res Response object data.
    * @param next Middleware function to be called.
@@ -27,6 +28,7 @@ export interface IAuthController {
 
   /**
    * Change the password for a given user.
+   *
    * @param req Request object data.
    * @param res Response object data.
    * @param next Middleware function to be called.
@@ -35,6 +37,7 @@ export interface IAuthController {
 
   /**
    * Creates an user account.
+   *
    * @param req Request object data.
    * @param res Response object data.
    * @param next Middleware function to be called.
@@ -43,6 +46,7 @@ export interface IAuthController {
 
   /**
    * Request a "forgot password" link that can be used to reset the password.
+   *
    * @param req Request object data.
    * @param res Response object data.
    * @param next Middleware function to be called.
@@ -51,6 +55,7 @@ export interface IAuthController {
 
   /**
    * Retrieves user data.
+   *
    * @param req Request object data.
    * @param res Response object data.
    * @param next Middleware function to be called.
@@ -59,6 +64,7 @@ export interface IAuthController {
 
   /**
    * Provides the log out logic.
+   *
    * @param req Request object data.
    * @param res Response object data.
    * @param next Middleware function to be called.
@@ -67,6 +73,7 @@ export interface IAuthController {
 
   /**
    * Reset the password for a given user.
+   *
    * @param req Request object data.
    * @param res Response object data.
    * @param next Middleware function to be called.
@@ -75,6 +82,7 @@ export interface IAuthController {
 
   /**
    * Provides a new OAuth token for an authorized token request.
+   *
    * @param req Request object data.
    * @param res Response object data.
    * @param next Middleware function to be called.

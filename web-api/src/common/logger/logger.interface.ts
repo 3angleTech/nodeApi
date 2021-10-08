@@ -17,6 +17,7 @@ export enum LogLevel {
 export interface ILogger {
   /**
    * Logs a message.
+   *
    * @param level The log level.
    * @param message The log message.
    * @param optionalParams Stack traces or any other objects.
