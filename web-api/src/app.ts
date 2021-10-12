@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/unbound-method */
 /**
  * @license
  * Copyright (c) 2019 THREEANGLE SOFTWARE SOLUTIONS SRL
