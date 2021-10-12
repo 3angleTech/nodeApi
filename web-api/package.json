@@ -71,7 +71,6 @@
     "eslint-plugin-jsdoc": "36.1.0",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "5.1.0",
-    "eslint-plugin-rxjs": "3.3.7",
     "eslint-plugin-security": "1.4.0",
     "eslint-plugin-sonarjs": "0.10.0",
     "istanbul": "0.4.5",
