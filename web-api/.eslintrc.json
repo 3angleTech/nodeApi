@@ -1,0 +1,23 @@
+{
+  "root": true,
+  "extends": [
+    "@3angletech/eslint-config/node"
+  ],
+  "rules": {
+    "import/no-cycle": "warn",
+    "jsdoc/check-values": "off",
+    "jsdoc/require-jsdoc": "off"
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.spec.ts"
+      ],
+      "globals": {
+        "ChaiHttp": "readonly",
+        "describe": "readonly",
+        "it": "readonly"
+      }
+    }
+  ]
+}

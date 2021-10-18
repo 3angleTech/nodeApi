@@ -5,6 +5,7 @@
  */
 
 import { QueryInterface } from 'sequelize';
+
 import { encrypt } from '../../../common/crypto';
 import { ANONYMOUS_USER_ID } from '../../../modules/security';
 

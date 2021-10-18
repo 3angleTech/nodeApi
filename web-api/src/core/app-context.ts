@@ -5,11 +5,12 @@
  */
 
 import { Container } from 'inversify';
+
 import { IAccountService, IOAuthServer } from '../modules/security';
 
 export class AppContext {
   public constructor(
-    private container: Container,
+    private readonly container: Container,
   ) { }
 
   public getOAuthServer(): IOAuthServer {

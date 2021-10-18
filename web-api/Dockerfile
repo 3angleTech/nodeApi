@@ -9,7 +9,7 @@ COPY package*.json ./
 RUN npm install
 
 # The node_modules directory is ignored by this COPY command.
-# @see: .dockerignore
+# @see .dockerignore
 COPY . .
 
 RUN npm run build

@@ -19,8 +19,10 @@ export enum DatabaseModel {
 export interface IDatabaseContext {
   /**
    * Provides the sequelize model for a specific table.
+   *
    * @param model The name of the table for the desired sequelize model.
    */
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   getModel(model: DatabaseModel): ModelCtor<any>;
 
   /**

@@ -11,14 +11,10 @@ import { Email } from './email.service.interface';
 
 @injectable()
 export class MockEmailProviderDriver implements IEmailProviderDriver {
-
-  constructor() {
-  }
-
-  public async sendEmail(email: Email): Promise<void> {
-    // tslint:disable-next-line:no-console
+  public sendEmail(email: Email): Promise<void> {
+    // eslint-disable-next-line no-console
     console.log(email);
 
-    return;
+    return Promise.resolve();
   }
 }

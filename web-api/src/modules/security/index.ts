@@ -5,6 +5,7 @@
  */
 
 import { Container } from 'inversify';
+
 import { AuthController } from './controllers/auth.controller';
 import { IAuthController } from './controllers/auth.controller.interface';
 import { ISandboxController, SandboxController } from './controllers/sandbox.controller';

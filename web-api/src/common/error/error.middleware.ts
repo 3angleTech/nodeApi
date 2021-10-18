@@ -8,12 +8,11 @@ import * as HttpStatus from 'http-status-codes';
 
 import { AppRequest, AppResponse } from '../../core';
 import { Logger, LogLevel } from '../logger';
-
 import { AppError } from './app-error';
 import { getErrorResponse } from './get-error-response';
 
-// tslint:disable-next-line:parameters-max-number
-export async function errorMiddleware(
+// eslint-disable-next-line max-params
+export function errorMiddleware(
   err: unknown | undefined,
   req: AppRequest,
   res: AppResponse,
@@ -27,5 +26,5 @@ export async function errorMiddleware(
     res.status(errorResponse.httpStatusCode).json(errorResponse);
   }
 
-  return;
+  return Promise.resolve();
 }

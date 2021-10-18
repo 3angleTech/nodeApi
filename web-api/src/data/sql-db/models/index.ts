@@ -1,28 +1,31 @@
+/* eslint-disable @typescript-eslint/no-require-imports,@typescript-eslint/no-var-requires */
 /**
  * @license
  * Copyright (c) 2018 THREEANGLE SOFTWARE SOLUTIONS SRL
  * Available under MIT license webApi/LICENSE
  */
-
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
 
-const basename = path.basename(__filename);
 const dbConfig = require('../config');
 
-// TODO: Refactor this file to avoid creating connections on import.
+const basename = path.basename(__filename);
+
+// eslint-disable-next-line no-warning-comments
+// TODO: #40 Refactor this file to avoid creating connections on import.
 const sequelize = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password, dbConfig);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const db: any = {};
 
 fs
   .readdirSync(__dirname)
   .filter(file => {
-  // tslint:disable-next-line:no-magic-numbers
-  return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
+    // eslint-disable-next-line no-magic-numbers
+    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
   })
   .forEach(file => {
-    const model = sequelize['import'](path.join(__dirname, file));
+    const model = sequelize.import(path.join(__dirname, file));
     db[model.name] = model;
   });
 

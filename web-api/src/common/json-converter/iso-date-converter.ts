@@ -8,11 +8,17 @@ import { JsonConverter, JsonCustomConvert } from 'json2typescript';
 
 @JsonConverter
 export class ISODateConverter implements JsonCustomConvert<Date> {
-  public serialize(date: Date): string {
-    return date.toISOString();
+  public serialize(date: Date | undefined): string | undefined {
+    return date?.toISOString();
   }
-  public deserialize(isoString: any): Date {
-    const millis = Date.parse(isoString);
-    return new Date(millis);
+
+  public deserialize(isoString: unknown): Date | undefined {
+    if (typeof isoString === 'string') {
+      const millis = Date.parse(isoString);
+      if (!isNaN(millis)) {
+        return new Date(millis);
+      }
+    }
+    return undefined;
   }
 }

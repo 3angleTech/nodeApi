@@ -5,13 +5,14 @@
  */
 
 /**
-* Provides generic email template parameters.
-*/
+ * Provides generic email template parameters.
+ */
 export interface Email {
   to: string;
   from: string;
   templateId: string;
-  dynamic_template_data: any;
+  // eslint-disable-next-line camelcase
+  dynamic_template_data: Record<string, string | number>;
 }
 
 /**
@@ -41,12 +42,14 @@ export interface IEmailService {
 
   /**
    * Sends a generic email message.
+   *
    * @param email The target email.
    */
   sendEmail(email: Email): Promise<void>;
 
   /**
    * Sends an account activation email.
+   *
    * @param to Email recipient.
    * @param from Email sender.
    * @param templateParameters Parameters to be replaced in the template.
@@ -55,6 +58,7 @@ export interface IEmailService {
 
   /**
    * Sends an email containing a password reset link.
+   *
    * @param to Email recipient.
    * @param from Email sender.
    * @param templateParameters Parameters to be replaced in the template.
@@ -63,6 +67,7 @@ export interface IEmailService {
 
   /**
    * Sends a new account email.
+   *
    * @param to Email recipient.
    * @param from Email sender.
    * @param templateParameters Parameters to be replaced in the template.

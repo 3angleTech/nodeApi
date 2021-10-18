@@ -5,6 +5,7 @@
  */
 
 import { inject, injectable } from 'inversify';
+
 import { IConfigurationService } from '../configuration';
 import { Logger, LogLevel } from '../logger';
 import { IEmailProviderDriver } from './email-provider-driver.interface';
@@ -14,8 +15,8 @@ import { ActivateAccountParameters, Email, ForgotPasswordParameters, IEmailServi
 export class EmailService implements IEmailService {
 
   constructor(
-    @inject(IEmailProviderDriver) private emailDriver: IEmailProviderDriver,
-    @inject(IConfigurationService) private configuration: IConfigurationService,
+    @inject(IEmailProviderDriver) private readonly emailDriver: IEmailProviderDriver,
+    @inject(IConfigurationService) private readonly configuration: IConfigurationService,
   ) {
   }
 
@@ -23,10 +24,8 @@ export class EmailService implements IEmailService {
     try {
       await this.emailDriver.sendEmail(email);
     } catch (err) {
-      const errorMessage = 'Failed to send email';
+      const errorMessage = `Failed to send "${email.templateId}" email`;
       Logger.getInstance().log(LogLevel.Error, errorMessage, err);
-      // TODO: Provide a mock service for development and remove this error log entry.
-      console.error(errorMessage, email);
       throw err;
     }
   }
@@ -38,7 +37,7 @@ export class EmailService implements IEmailService {
       to: to,
       from: from,
       templateId: templateId,
-      dynamic_template_data: templateParameters,
+      dynamic_template_data: { ...templateParameters },
     };
 
     await this.sendEmail(email);
@@ -51,14 +50,21 @@ export class EmailService implements IEmailService {
       to: to,
       from: from,
       templateId: templateId,
-      dynamic_template_data: templateParameters,
+      dynamic_template_data: { ...templateParameters },
     };
 
     await this.sendEmail(email);
   }
 
   public async sendNewAccountEmail(to: string, from: string, templateParameters: NewAccountParameters): Promise<void> {
-    // TODO: Pass parameters such as username in e-mail
-    await this.sendEmail(null);
+    const templateId = this.configuration.getEmailConfig().templateIds.newAccount;
+
+    const email: Email = {
+      to: to,
+      from: from,
+      templateId: templateId,
+      dynamic_template_data: { ...templateParameters },
+    };
+    await this.sendEmail(email);
   }
 }

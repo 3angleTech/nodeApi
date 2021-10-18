@@ -5,6 +5,7 @@
  */
 
 import { Container } from 'inversify';
+
 import { JsonConverterService } from './json-converter.service';
 import { IJsonConverterService } from './json-converter.service.interface';
 

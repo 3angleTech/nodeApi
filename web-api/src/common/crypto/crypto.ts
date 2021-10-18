@@ -4,13 +4,13 @@
  * Available under MIT license webApi/LICENSE
  */
 
-import bcryptNodejs = require('bcrypt-nodejs');
+import { compareSync, genSaltSync, hashSync } from 'bcrypt-nodejs';
 
 export function encrypt(value: string): string {
-  const saltSync = bcryptNodejs.genSaltSync();
-  return bcryptNodejs.hashSync(value, saltSync);
+  const saltSync = genSaltSync();
+  return hashSync(value, saltSync);
 }
 
 export function verify(original: string, encrypted: string): boolean {
-  return bcryptNodejs.compareSync(original, encrypted);
+  return compareSync(original, encrypted);
 }

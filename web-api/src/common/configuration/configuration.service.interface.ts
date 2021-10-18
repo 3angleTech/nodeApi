@@ -35,6 +35,7 @@ export interface OAuthConfiguration {
 export interface EmailConfiguration {
   provider: string;
   from: string;
+  // eslint-disable-next-line no-use-before-define
   templateIds: EmailTemplateIds;
 }
 
@@ -44,6 +45,7 @@ export interface EmailConfiguration {
 export interface EmailTemplateIds {
   accountActivation: string;
   forgotPassword: string;
+  newAccount: string;
 }
 
 /**
@@ -73,4 +75,5 @@ export interface IConfigurationService {
    */
   getEmailConfig(): EmailConfiguration;
 }
+// eslint-disable-next-line no-redeclare
 export const IConfigurationService = Symbol.for('IConfigurationService');

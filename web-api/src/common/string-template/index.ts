@@ -5,6 +5,7 @@
  */
 
 import { Container } from 'inversify';
+
 import { IStringTemplateService, StringTemplateService } from './string-template.service';
 
 export function bindDependencies(container: Container): void {

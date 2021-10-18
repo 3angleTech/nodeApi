@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/unbound-method */
 /**
  * @license
  * Copyright (c) 2019 THREEANGLE SOFTWARE SOLUTIONS SRL
@@ -33,7 +34,8 @@ export class App {
 
   /**
    * Configure server to deal with CORS.
-   * @see: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+   *
+   * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
    */
   private enableCORS(): void {
     this.express.all('/*', (req: Request, res: Response, next: NextFunction): void => {
@@ -86,7 +88,6 @@ export class App {
     });
   }
 
-  // tslint:disable-next-line:max-func-body-length
   private registerRoutes(): void {
     const router: Router = createExpressRouter();
 

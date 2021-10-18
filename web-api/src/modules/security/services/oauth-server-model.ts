@@ -7,6 +7,7 @@
 import { inject, injectable } from 'inversify';
 import { find } from 'lodash';
 import { Client, RefreshToken, Token } from 'oauth2-server';
+
 import { IConfigurationService, OAuthConfiguration } from '../../../common/configuration';
 import { isNil } from '../../../common/utils';
 import { OAuthUser } from '../data-objects/oauth-user.do';
@@ -18,9 +19,9 @@ import { IOAuthServerModel } from './oauth-server-model.interface';
 export class OAuthServerModel implements IOAuthServerModel {
 
   constructor(
-    @inject(IConfigurationService) private configurationService: IConfigurationService,
-    @inject(IAccountService) private accountService: IAccountService,
-    @inject(IJwtTokenService) private tokenService: IJwtTokenService,
+    @inject(IConfigurationService) private readonly configurationService: IConfigurationService,
+    @inject(IAccountService) private readonly accountService: IAccountService,
+    @inject(IJwtTokenService) private readonly tokenService: IJwtTokenService,
   ) {
   }
 
@@ -29,7 +30,6 @@ export class OAuthServerModel implements IOAuthServerModel {
       userId: user.id,
       expirySeconds: client.accessTokenLifetime,
       clientId: client.id,
-      // TODO: this is not client secret, it's accessToken secret
       clientSecret: this.oauthConfig.accessTokenSecret,
       grants: <string[]>client.grants,
     });
@@ -89,7 +89,9 @@ export class OAuthServerModel implements IOAuthServerModel {
   }
 
   public getClient(clientId: string, clientSecret: string): Promise<Client> {
-    const client = find(this.oauthConfig.clients, c => c.id === clientId);
+    const client = find(this.oauthConfig.clients, c => {
+      return c.id === clientId;
+    });
     if (isNil(client)) {
       throw new Error(`Client with id ${clientId} not found`);
     }

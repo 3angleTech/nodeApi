@@ -6,14 +6,15 @@
 
 import { inject, injectable } from 'inversify';
 import { sign as signToken, verify as verifyToken } from 'jsonwebtoken';
+
 import { IConfigurationService, OAuthConfiguration } from '../../../common/configuration';
-import { IJwtTokenService, TokenGenerateOptions, TokenPayload } from './jwt-token.service.interface';
+import { IJwtTokenService, isTokenPayload, TokenGenerateOptions, TokenPayload } from './jwt-token.service.interface';
 
 @injectable()
 export class JwtTokenService implements IJwtTokenService {
 
   constructor(
-    @inject(IConfigurationService) private configuration: IConfigurationService,
+    @inject(IConfigurationService) private readonly configuration: IConfigurationService,
   ) {
   }
 
@@ -23,7 +24,7 @@ export class JwtTokenService implements IJwtTokenService {
 
   public generate(options: TokenGenerateOptions): Promise<string> {
     const expiresAt = new Date(
-      // tslint:disable-next-line:no-magic-numbers
+      // eslint-disable-next-line no-magic-numbers
       new Date().getTime() + (options.expirySeconds * 1000),
     );
     const payload: TokenPayload = {
@@ -40,7 +41,10 @@ export class JwtTokenService implements IJwtTokenService {
   }
 
   public verify(token: string, clientSecret: string): Promise<TokenPayload> {
-    const decoded = <any>verifyToken(token, clientSecret);
+    const decoded = verifyToken(token, clientSecret);
+    if (!isTokenPayload(decoded)) {
+      throw new Error('Invalid token payload.');
+    }
     return Promise.resolve(decoded);
   }
 
