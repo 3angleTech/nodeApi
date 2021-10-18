@@ -6,6 +6,7 @@
 
 import { NextFunction } from 'express';
 import { inject, injectable } from 'inversify';
+
 import { IConfigurationService } from '../../../common/configuration';
 import { ActivateAccountParameters, IEmailService } from '../../../common/email';
 import { InvalidRequestError } from '../../../common/error';
@@ -35,10 +36,10 @@ export const ISandboxController = Symbol.for('ISandboxController');
 export class SandboxController implements ISandboxController {
   // eslint-disable-next-line max-params
   constructor(
-    @inject(IEmailService) private emailService: IEmailService,
-    @inject(IConfigurationService) private configuration: IConfigurationService,
-    @inject(IAccountService) private accountService: IAccountService,
-    @inject(IJwtTokenService) private tokenService: IJwtTokenService,
+    @inject(IEmailService) private readonly emailService: IEmailService,
+    @inject(IConfigurationService) private readonly configuration: IConfigurationService,
+    @inject(IAccountService) private readonly accountService: IAccountService,
+    @inject(IJwtTokenService) private readonly tokenService: IJwtTokenService,
   ) {
     this.sendActivationMail = this.sendActivationMail.bind(this);
   }

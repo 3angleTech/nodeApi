@@ -14,6 +14,6 @@ export interface IJsonConverterService {
    * @param json The JSON object.
    * @param classReference The class reference of the expected object.
    */
-  deserialize<T>(json: any, classReference: new() => T): T;
+  deserialize<T>(json: unknown, classReference: new() => T): T;
 }
 export const IJsonConverterService = Symbol.for('IJsonConverterService');

@@ -9,7 +9,6 @@ import { Request as OAuth2Request, Response as OAuth2Response, Token } from 'oau
 import OAuth2Server = require('oauth2-server');
 
 import { AppRequest, AppResponse } from '../../../core';
-
 import { IOAuthServerModel } from './oauth-server-model.interface';
 import { IOAuthServer } from './oauth-server.interface';
 

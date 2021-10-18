@@ -22,5 +22,5 @@ export interface ILogger {
    * @param message The log message.
    * @param optionalParams Stack traces or any other objects.
    */
-  log(level: LogLevel, message: string, ...optionalParams: any[]): void;
+  log(level: LogLevel, message: string, ...optionalParams: unknown[]): void;
 }

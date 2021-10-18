@@ -3,7 +3,7 @@
  * Copyright (c) 2019 THREEANGLE SOFTWARE SOLUTIONS SRL
  * Available under MIT license webApi/LICENSE
  */
-/* eslint-disable @typescript-eslint/naming-convention */
+
 import { Algorithm } from 'jsonwebtoken';
 
 /**

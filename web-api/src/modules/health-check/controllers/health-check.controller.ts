@@ -6,6 +6,7 @@
 
 import { NextFunction } from 'express';
 import { inject, injectable } from 'inversify';
+
 import { AppRequest, AppResponse } from '../../../core';
 import { IDatabaseContext } from '../../../data';
 import { IHealthCheckController } from './health-check.controller.interface';
@@ -14,7 +15,7 @@ import { IHealthCheckController } from './health-check.controller.interface';
 export class HealthCheckController implements IHealthCheckController {
 
   constructor(
-    @inject(IDatabaseContext) private dbContext: IDatabaseContext,
+    @inject(IDatabaseContext) private readonly dbContext: IDatabaseContext,
   ) {
     this.run = this.run.bind(this);
   }

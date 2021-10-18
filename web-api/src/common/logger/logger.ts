@@ -18,7 +18,7 @@ export class Logger implements ILogger {
     return Logger.instance;
   }
 
-  public log(level: LogLevel, message: string, ...optionalParams: any[]): void {
+  public log(level: LogLevel, message: string, ...optionalParams: unknown[]): void {
     switch (level) {
       case LogLevel.Debug: {
         console.debug(message, optionalParams);

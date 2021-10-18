@@ -8,7 +8,6 @@ import * as HttpStatus from 'http-status-codes';
 
 import { AppRequest, AppResponse } from '../../core';
 import { Logger, LogLevel } from '../logger';
-
 import { AppError } from './app-error';
 import { getErrorResponse } from './get-error-response';
 

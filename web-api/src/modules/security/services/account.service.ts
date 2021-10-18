@@ -23,11 +23,11 @@ import { IJwtTokenService } from './jwt-token.service.interface';
 export class AccountService implements IAccountService {
   // eslint-disable-next-line max-params
   constructor(
-    @inject(IDatabaseContext) private dbContext: IDatabaseContext,
-    @inject(IJsonConverterService) private jsonConverter: IJsonConverterService,
-    @inject(IConfigurationService) private configuration: IConfigurationService,
-    @inject(IEmailService) private emailService: IEmailService,
-    @inject(IJwtTokenService) private tokenService: IJwtTokenService,
+    @inject(IDatabaseContext) private readonly dbContext: IDatabaseContext,
+    @inject(IJsonConverterService) private readonly jsonConverter: IJsonConverterService,
+    @inject(IConfigurationService) private readonly configuration: IConfigurationService,
+    @inject(IEmailService) private readonly emailService: IEmailService,
+    @inject(IJwtTokenService) private readonly tokenService: IJwtTokenService,
   ) {
   }
 

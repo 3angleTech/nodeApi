@@ -5,6 +5,7 @@
  */
 
 import { Container } from 'inversify';
+
 import { ConfigurationService } from './configuration.service';
 import { IConfigurationService } from './configuration.service.interface';
 

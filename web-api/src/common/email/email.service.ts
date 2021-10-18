@@ -5,6 +5,7 @@
  */
 
 import { inject, injectable } from 'inversify';
+
 import { IConfigurationService } from '../configuration';
 import { Logger, LogLevel } from '../logger';
 import { IEmailProviderDriver } from './email-provider-driver.interface';
@@ -14,8 +15,8 @@ import { ActivateAccountParameters, Email, ForgotPasswordParameters, IEmailServi
 export class EmailService implements IEmailService {
 
   constructor(
-    @inject(IEmailProviderDriver) private emailDriver: IEmailProviderDriver,
-    @inject(IConfigurationService) private configuration: IConfigurationService,
+    @inject(IEmailProviderDriver) private readonly emailDriver: IEmailProviderDriver,
+    @inject(IConfigurationService) private readonly configuration: IConfigurationService,
   ) {
   }
 

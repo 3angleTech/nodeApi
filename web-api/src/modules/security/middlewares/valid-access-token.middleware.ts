@@ -5,6 +5,7 @@
  */
 
 import { NextFunction } from 'express';
+
 import { UnauthorizedError } from '../../../common/error';
 import { isNil } from '../../../common/utils';
 import { AppRequest, AppResponse, UserContext } from '../../../core';

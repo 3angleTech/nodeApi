@@ -12,10 +12,8 @@ import { Container } from 'inversify';
 import { bindDependencies as bindConfigurationDependencies } from './common/configuration';
 import { bindDependencies as bindJsonConvertedDependencies } from './common/json-converter';
 import { bindDependencies as bindDataDependencies } from './data';
-
 import { bindDependencies as bindHealthCheckDependencies } from './modules/health-check';
 import { bindDependencies as bindSecurityDependencies } from './modules/security';
-
 import { bindDependencies as bindEmailDependencies } from './common/email';
 import { bindDependencies as bindStringTemplateDependencies } from './common/string-template';
 

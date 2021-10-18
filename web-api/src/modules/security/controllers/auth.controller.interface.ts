@@ -5,6 +5,7 @@
  */
 
 import { NextFunction } from 'express';
+
 import { AppRequest, AppResponse } from '../../../core';
 
 export const refreshTokenGrantName: string = 'refresh_token';

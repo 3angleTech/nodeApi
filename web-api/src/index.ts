@@ -12,7 +12,7 @@ const port: number = Number(process.env.PORT) || defaultPortNumber;
 
 appFactory().listen(port).on('listening', (): void => {
   Logger.getInstance().log(LogLevel.Info, `Server is listening on port ${port}`);
-}).on('error', (err: any): void => {
+}).on('error', (err: unknown): void => {
   Logger.getInstance().log(LogLevel.Error, 'The server could not be started.', err);
   const errorCode = 1;
   process.exit(errorCode);

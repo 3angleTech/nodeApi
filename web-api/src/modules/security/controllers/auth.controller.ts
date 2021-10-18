@@ -22,7 +22,6 @@ import {
 } from '../services/account.service.interface';
 import { IJwtTokenService } from '../services/jwt-token.service.interface';
 import { IOAuthServer } from '../services/oauth-server.interface';
-
 import {
   accessTokenCookieName,
   authenticatedCookieName,
@@ -36,12 +35,12 @@ export class AuthController implements IAuthController {
 
   // eslint-disable-next-line max-params
   constructor(
-    @inject(IAccountService) private accountService: IAccountService,
-    @inject(IConfigurationService) private configuration: IConfigurationService,
-    @inject(IDatabaseContext) private dbContext: IDatabaseContext,
-    @inject(IEmailService) private emailService: IEmailService,
-    @inject(IOAuthServer) private oauthServer: IOAuthServer,
-    @inject(IJwtTokenService) private tokenService: IJwtTokenService,
+    @inject(IAccountService) private readonly accountService: IAccountService,
+    @inject(IConfigurationService) private readonly configuration: IConfigurationService,
+    @inject(IDatabaseContext) private readonly dbContext: IDatabaseContext,
+    @inject(IEmailService) private readonly emailService: IEmailService,
+    @inject(IOAuthServer) private readonly oauthServer: IOAuthServer,
+    @inject(IJwtTokenService) private readonly tokenService: IJwtTokenService,
   ) {
     this.token = this.token.bind(this);
     this.getAccount = this.getAccount.bind(this);
@@ -79,6 +78,7 @@ export class AuthController implements IAuthController {
           name: 'NO_AUTH_CREDENTIALS',
         }));
       }
+      // eslint-disable-next-line no-warning-comments
       // TODO: Reformat the code to avoid updating these values.
       req.body.access_token = accessToken;
       req.body.refresh_token = refreshToken;
@@ -146,6 +146,7 @@ export class AuthController implements IAuthController {
     const currentUser: User = res.getUserContext().user;
     const passwordChange: IPasswordChangeRequest = req.body;
     try {
+      // eslint-disable-next-line no-warning-comments
       // TODO: Refactor `IAccountService.verify()` to avoid loading the user a 2nd time.
       const verifiedUser = await this.accountService.verify({
         username: currentUser.username,

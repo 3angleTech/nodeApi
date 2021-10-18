@@ -5,6 +5,7 @@
  */
 import { injectable } from 'inversify';
 import { JsonConvert, ValueCheckingMode } from 'json2typescript';
+
 import { IJsonConverterService } from './json-converter.service.interface';
 
 @injectable()

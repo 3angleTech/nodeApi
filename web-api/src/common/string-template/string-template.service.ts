@@ -6,6 +6,7 @@
 
 import { injectable } from 'inversify';
 import { forEach, map, union } from 'lodash';
+
 import { isNil } from '../utils';
 
 /**
@@ -25,7 +26,7 @@ export const IStringTemplateService = Symbol.for('IStringTemplateService');
 
 @injectable()
 export class StringTemplateService implements IStringTemplateService {
-  private PLACEHOLDER_VARIABLE_FORMAT_REG_EXP: RegExp = /{{\s?([^{}\s]*)\s?}}/g;
+  private readonly PLACEHOLDER_VARIABLE_FORMAT_REG_EXP: RegExp = /{{\s?([^{}\s]*)\s?}}/g;
 
   public interpolate(template: string, parameters: Record<string, string | number>): string {
     this.validateTemplateAndParameters(template, parameters);

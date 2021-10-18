@@ -7,6 +7,7 @@
 import { MailData } from '@sendgrid/helpers/classes/mail';
 import * as sendGrid from '@sendgrid/mail';
 import { injectable } from 'inversify';
+
 import { IEmailProviderDriver } from './email-provider-driver.interface';
 import { Email } from './email.service.interface';
 

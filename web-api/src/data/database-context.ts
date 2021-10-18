@@ -10,7 +10,6 @@ import { ModelCtor, Sequelize, ValidationError } from 'sequelize';
 
 import { isNil } from '../common/utils';
 import { Logger, LogLevel } from '../common/logger';
-
 import { DatabaseModel, IDatabaseContext } from './database-context.interface';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -34,6 +33,7 @@ export class DatabaseContext implements IDatabaseContext {
     });
   }
 
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   public getModel(model: DatabaseModel): ModelCtor<any> {
     return models[model];
   }

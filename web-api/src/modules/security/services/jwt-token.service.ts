@@ -6,6 +6,7 @@
 
 import { inject, injectable } from 'inversify';
 import { sign as signToken, verify as verifyToken } from 'jsonwebtoken';
+
 import { IConfigurationService, OAuthConfiguration } from '../../../common/configuration';
 import { IJwtTokenService, isTokenPayload, TokenGenerateOptions, TokenPayload } from './jwt-token.service.interface';
 
@@ -13,7 +14,7 @@ import { IJwtTokenService, isTokenPayload, TokenGenerateOptions, TokenPayload } 
 export class JwtTokenService implements IJwtTokenService {
 
   constructor(
-    @inject(IConfigurationService) private configuration: IConfigurationService,
+    @inject(IConfigurationService) private readonly configuration: IConfigurationService,
   ) {
   }
 

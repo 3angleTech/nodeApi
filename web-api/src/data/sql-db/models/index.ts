@@ -6,15 +6,16 @@
  */
 const fs = require('fs');
 const path = require('path');
-
 const Sequelize = require('sequelize');
 
 const dbConfig = require('../config');
 
 const basename = path.basename(__filename);
 
+// eslint-disable-next-line no-warning-comments
 // TODO: #40 Refactor this file to avoid creating connections on import.
 const sequelize = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password, dbConfig);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const db: any = {};
 
 fs

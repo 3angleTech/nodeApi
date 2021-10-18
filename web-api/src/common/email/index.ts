@@ -5,6 +5,7 @@
  */
 
 import { Container } from 'inversify';
+
 import { IConfigurationService } from '../configuration';
 import { IEmailProviderDriver } from './email-provider-driver.interface';
 import { EmailProvider } from './email-provider.enum';

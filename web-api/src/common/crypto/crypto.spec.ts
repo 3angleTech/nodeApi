@@ -5,6 +5,7 @@
  */
 
 import { expect } from 'chai';
+
 import { encrypt, verify } from './crypto';
 
 describe('Crypto Service', () => {

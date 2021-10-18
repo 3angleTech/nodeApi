@@ -5,6 +5,7 @@
  */
 
 import { Token } from 'oauth2-server';
+
 import { AppRequest, AppResponse } from '../../../core';
 
 /**
