@@ -15,6 +15,7 @@ import { IDatabaseContext } from './data';
 import { IHealthCheckController } from './modules/health-check';
 import { authenticatedUserMiddleware, IAuthController, ISandboxController, validAccessTokenMiddleware } from './modules/security';
 import { createExpressApplication, createExpressRouter } from './other/express.factory';
+import { version } from './version';
 
 export class App {
   public readonly express: Express;
@@ -72,6 +73,17 @@ export class App {
     this.express.use(cookieParser());
     this.express.use(urlencoded({ extended: true }));
     this.express.use(json());
+
+    this.express.use((req: Request, res: Response, next: NextFunction): void => {
+      res.header('X-WebApiVersion', version);
+      /**
+       * Expose the custom header to cross-origin requests.
+       *
+       * @see https://developer.mozilla.org/en-US/docs/Glossary/CORS-safelisted_response_header
+       */
+      res.header('Access-Control-Expose-Headers', 'X-WebApiVersion');
+      next();
+    });
 
     this.express.use((req: Request, res: Response, next: NextFunction): void => {
       const appReq: AppRequest = req as AppRequest;
