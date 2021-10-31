@@ -6,7 +6,6 @@
 
 import { NextFunction } from 'express';
 
-import { UnauthorizedError } from '../../../common/error';
 import { isNil } from '../../../common/utils';
 import { AppRequest, AppResponse, UserContext } from '../../../core';
 import { IPasswordResetRequest } from '../services/account.service.interface';
@@ -29,6 +28,6 @@ export async function validAccessTokenMiddleware(req: AppRequest, res: AppRespon
     res.locals.userContext = userContext;
     return next();
   } catch (err) {
-    return next(new UnauthorizedError(err));
+    return next(err);
   }
 }
