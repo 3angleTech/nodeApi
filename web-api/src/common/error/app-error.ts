@@ -7,16 +7,16 @@ import * as HttpStatus from 'http-status-codes';
 
 export interface IAppErrorParameters {
   httpStatusCode?: number;
-  message: string;
+  message?: string;
   name: string;
-  originalError?: Readonly<Error>;
+  originalError?: unknown;
 }
 
 export class AppError extends Error implements IAppErrorParameters {
   public readonly httpStatusCode: number;
   public readonly message: string;
   public readonly name: string;
-  public readonly originalError?: Readonly<Error>;
+  public readonly originalError?: unknown;
 
   constructor(parameters: IAppErrorParameters) {
     // NOTE: To avoid `enumerable: false` issues, the Error class is called without any arguments.

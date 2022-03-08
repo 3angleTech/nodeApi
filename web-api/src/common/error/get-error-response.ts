@@ -71,13 +71,13 @@ export function getErrorResponse(err: unknown): AppError {
     return new AppError({
       httpStatusCode: statusCode,
       message: innerError.message,
-      name: 'UNKNOWN_ERROR',
+      name: 'UNKNOWN_SERVER_ERROR',
     });
   } else if (typeof innerError === 'string') {
     return new AppError({
       httpStatusCode: statusCode,
       message: innerError,
-      name: 'UNKNOWN_ERROR',
+      name: 'UNKNOWN_SERVER_ERROR',
     });
   }
 
