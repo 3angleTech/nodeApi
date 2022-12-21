@@ -40,7 +40,7 @@ export class App {
    */
   private enableCORS(): void {
     this.express.all('/*', (req: Request, res: Response, next: NextFunction): void => {
-      const origin: string = <string>req.headers.origin || '*';
+      const origin: string = req.headers.origin || '*';
       res.header('Access-Control-Allow-Origin', origin);
       res.header('Access-Control-Allow-Credentials', 'true');
       res.header('Access-Control-Allow-Methods', 'POST,PUT,GET,DELETE');

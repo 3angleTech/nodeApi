@@ -4,7 +4,7 @@ Web API stub project written in NodeJS on top of TypeScript.
 
 ## Prerequisites
 
-[Node.js v8.12.0 - installation instructions](*https://nodejs.org/en/download/package-manager/).
+[Node.js v16.19 - installation instructions](*https://nodejs.org/en/download/package-manager/).
 
 Docker v17.0 & Docker Compose - installation instructions can be found [here](https://docs.docker.com/install/) or [here](https://docs.docker.com/compose/install/).
 

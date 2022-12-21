@@ -25,8 +25,8 @@ describe('Authentication tests', () => {
       .send(`username=${username}&password=invalid_password&client_id=${clientId}&client_secret=${clientSecret}&grant_type=password`)
       .end((err, res) => {
         assert.isNull(err);
-        expect(res.body.message).to.equal('Invalid username or password');
-        expect(res).to.have.status(HttpStatus.INTERNAL_SERVER_ERROR);
+        expect(res.body.message).to.equal('Invalid credentials.');
+        expect(res).to.have.status(HttpStatus.BAD_REQUEST);
         done(err);
       });
   });
