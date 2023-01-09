@@ -58,7 +58,7 @@ export class AuthController implements IAuthController {
 
   public async activateAccount(req: AppRequest, res: AppResponse, next: NextFunction): Promise<void> {
     try {
-      await this.accountService.activate(req.query.token);
+      await this.accountService.activate(req.query.token as string);
       res.json({ message: 'Account activated successfully.' });
     } catch (err) {
       return next(err);
