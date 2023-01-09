@@ -5,6 +5,7 @@
  */
 
 import { NextFunction } from 'express';
+
 import { UnauthorizedError } from '../../../common/error';
 import { isNil } from '../../../common/utils';
 import { AppRequest, AppResponse, UserContext } from '../../../core';
@@ -14,8 +15,9 @@ import {
   refreshTokenCookieName,
 } from '../controllers/auth.controller.interface';
 
+// eslint-disable-next-line max-statements
 export async function authenticatedUserMiddleware(req: AppRequest, res: AppResponse, next: NextFunction): Promise<void> {
-  // when accessToken is sent via cookie, we initialize the authorization header used by the oauth middleware
+  // When accessToken is sent via cookie, we initialize the authorization header used by the oauth middleware
   const accessToken = req.cookies[accessTokenCookieName];
   if (isNil(accessToken)) {
     res.clearCookie(accessTokenCookieName);

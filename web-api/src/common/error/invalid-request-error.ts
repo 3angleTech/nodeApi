@@ -5,6 +5,7 @@
  */
 
 import * as HttpStatus from 'http-status-codes';
+
 import { AppError, IAppErrorParameters } from './app-error';
 
 export class InvalidRequestError extends AppError {

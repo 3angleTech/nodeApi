@@ -14,7 +14,6 @@ import {
 } from 'sequelize';
 
 module.exports = (sequelize: Sequelize): ModelType => {
-  // tslint:disable-next-line:no-unnecessary-local-variable prefer-immediate-return
   const users: ModelType = sequelize.define('Users', {
     username: { type: STRING, field: 'username' },
     password: { type: STRING, field: 'password' },

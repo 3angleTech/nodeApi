@@ -5,6 +5,7 @@
  */
 
 import { Container } from 'inversify';
+
 import { DatabaseContext } from './database-context';
 import { IDatabaseContext } from './database-context.interface';
 

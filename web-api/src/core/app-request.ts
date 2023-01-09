@@ -8,8 +8,7 @@ import { Request } from 'express';
 
 import { AppContext } from './app-context';
 
-// tslint:disable-next-line:interface-name
 export interface AppRequest extends Request {
-  // tslint:disable-next-line:prefer-method-signature
+  // eslint-disable-next-line @typescript-eslint/method-signature-style
   getAppContext: () => AppContext;
 }

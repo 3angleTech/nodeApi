@@ -6,8 +6,8 @@
 
 import { MailData } from '@sendgrid/helpers/classes/mail';
 import * as sendGrid from '@sendgrid/mail';
-import * as HttpStatus from 'http-status-codes';
 import { injectable } from 'inversify';
+
 import { IEmailProviderDriver } from './email-provider-driver.interface';
 import { Email } from './email.service.interface';
 
@@ -24,22 +24,13 @@ export class SendGridEmailProviderDriver implements IEmailProviderDriver {
   }
 
   public async sendEmail(email: Email): Promise<void> {
-    const message: MailData & { dynamic_template_data: any } = {
+    const message: MailData & Pick<Email, 'dynamic_template_data'> = {
       to: email.to,
       from: email.from,
       templateId: email.templateId,
       dynamic_template_data: email.dynamic_template_data,
     };
-
-    try {
-      const response = await sendGrid.send(message as any);
-      const statusCode = response[0].statusCode;
-      switch (statusCode) {
-        case HttpStatus.ACCEPTED:
-          return;
-      }
-    } catch (e) {
-      throw e;
-    }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    await sendGrid.send(message as any);
   }
 }

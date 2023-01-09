@@ -5,6 +5,7 @@
  */
 
 import { Container } from 'inversify';
+
 import { HealthCheckController } from './controllers/health-check.controller';
 import { IHealthCheckController } from './controllers/health-check.controller.interface';
 

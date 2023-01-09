@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/dot-notation */
 /**
  * @license
  * Copyright (c) 2020 THREEANGLE SOFTWARE SOLUTIONS SRL
@@ -7,24 +8,24 @@ import * as HttpStatus from 'http-status-codes';
 
 import { AppError } from './app-error';
 
-// tslint:disable-next-line:cyclomatic-complexity
+// eslint-disable-next-line complexity
 function getStatusFromError(err: unknown): number {
-  if (err.hasOwnProperty('message')) {
+  if (Object.prototype.hasOwnProperty.call(err, 'message')) {
     if (err['message'] instanceof AppError) {
       return err['message'].httpStatusCode;
     }
   }
-  if (err.hasOwnProperty('inner')) {
+  if (Object.prototype.hasOwnProperty.call(err, 'inner')) {
     if (err['inner'] instanceof AppError) {
       return err['inner'].httpStatusCode;
     }
   }
-    if (err.hasOwnProperty('status') && typeof err['status'] === 'number') {
+  if (Object.prototype.hasOwnProperty.call(err, 'status') && typeof err['status'] === 'number') {
     return err['status'];
-  } else if (err.hasOwnProperty('statusCode') && typeof err['statusCode'] === 'number') {
-    return err['status'];
-  } else if (err.hasOwnProperty('code') && typeof err['code'] === 'number') {
-    return err['status'];
+  } else if (Object.prototype.hasOwnProperty.call(err, 'statusCode') && typeof err['statusCode'] === 'number') {
+    return err['statusCode'];
+  } else if (Object.prototype.hasOwnProperty.call(err, 'code') && typeof err['code'] === 'number') {
+    return err['code'];
   }
 
   return HttpStatus.INTERNAL_SERVER_ERROR;
@@ -56,7 +57,7 @@ export function getErrorResponse(err: unknown): AppError {
   if (err['inner'] !== undefined) {
     innerError = err['inner'];
   } else if (err['message'] !== undefined) {
-    innerError = err ['message'];
+    innerError = err['message'];
   }
 
   const statusCode = getStatusFromError(err);
@@ -70,13 +71,13 @@ export function getErrorResponse(err: unknown): AppError {
     return new AppError({
       httpStatusCode: statusCode,
       message: innerError.message,
-      name: 'UNKNOWN_ERROR',
+      name: 'UNKNOWN_SERVER_ERROR',
     });
   } else if (typeof innerError === 'string') {
     return new AppError({
       httpStatusCode: statusCode,
       message: innerError,
-      name: 'UNKNOWN_ERROR',
+      name: 'UNKNOWN_SERVER_ERROR',
     });
   }
 

@@ -3,7 +3,7 @@
  * Copyright (c) 2019 THREEANGLE SOFTWARE SOLUTIONS SRL
  * Available under MIT license webApi/LICENSE
  */
-/* tslint:disable:max-file-line-count */
+/* eslint-disable max-lines */
 import { NextFunction } from 'express';
 import { inject, injectable } from 'inversify';
 
@@ -22,7 +22,6 @@ import {
 } from '../services/account.service.interface';
 import { IJwtTokenService } from '../services/jwt-token.service.interface';
 import { IOAuthServer } from '../services/oauth-server.interface';
-
 import {
   accessTokenCookieName,
   authenticatedCookieName,
@@ -34,13 +33,14 @@ import {
 @injectable()
 export class AuthController implements IAuthController {
 
+  // eslint-disable-next-line max-params
   constructor(
-    @inject(IAccountService) private accountService: IAccountService,
-    @inject(IConfigurationService) private configuration: IConfigurationService,
-    @inject(IDatabaseContext) private dbContext: IDatabaseContext,
-    @inject(IEmailService) private emailService: IEmailService,
-    @inject(IOAuthServer) private oauthServer: IOAuthServer,
-    @inject(IJwtTokenService) private tokenService: IJwtTokenService,
+    @inject(IAccountService) private readonly accountService: IAccountService,
+    @inject(IConfigurationService) private readonly configuration: IConfigurationService,
+    @inject(IDatabaseContext) private readonly dbContext: IDatabaseContext,
+    @inject(IEmailService) private readonly emailService: IEmailService,
+    @inject(IOAuthServer) private readonly oauthServer: IOAuthServer,
+    @inject(IJwtTokenService) private readonly tokenService: IJwtTokenService,
   ) {
     this.token = this.token.bind(this);
     this.getAccount = this.getAccount.bind(this);
@@ -58,14 +58,14 @@ export class AuthController implements IAuthController {
 
   public async activateAccount(req: AppRequest, res: AppResponse, next: NextFunction): Promise<void> {
     try {
-      await this.accountService.activate(req.query.token);
+      await this.accountService.activate(req.query.token as string);
       res.json({ message: 'Account activated successfully.' });
     } catch (err) {
       return next(err);
     }
   }
 
-  // tslint:disable-next-line:max-func-body-length
+  // eslint-disable-next-line max-statements
   public async token(req: AppRequest, res: AppResponse, next: NextFunction): Promise<void> {
     const isRefreshTokenRequest = req.body.grant_type === refreshTokenGrantName;
     // Automatically set the accessToken and refreshToken for clients using HttpOnly cookies.
@@ -78,6 +78,7 @@ export class AuthController implements IAuthController {
           name: 'NO_AUTH_CREDENTIALS',
         }));
       }
+      // eslint-disable-next-line no-warning-comments
       // TODO: Reformat the code to avoid updating these values.
       req.body.access_token = accessToken;
       req.body.refresh_token = refreshToken;
@@ -145,6 +146,7 @@ export class AuthController implements IAuthController {
     const currentUser: User = res.getUserContext().user;
     const passwordChange: IPasswordChangeRequest = req.body;
     try {
+      // eslint-disable-next-line no-warning-comments
       // TODO: Refactor `IAccountService.verify()` to avoid loading the user a 2nd time.
       const verifiedUser = await this.accountService.verify({
         username: currentUser.username,
@@ -182,7 +184,6 @@ export class AuthController implements IAuthController {
       });
 
       if (isNil(userObject)) {
-        // TODO: Refactor message to avoid disclosing user account existence via forgot password requests.
         return next(new InvalidRequestError({
           message: 'Invalid email.',
           name: 'INVALID_EMAIL',
@@ -223,13 +224,14 @@ export class AuthController implements IAuthController {
     });
   }
 
-  private async generateAccessToken(user: User): Promise<string> {
+  private generateAccessToken(user: User): Promise<string> {
+    const clientIndex = 0;
     return this.tokenService.generate({
       userId: user.id,
-      clientId: this.oauthConfig.clients[0].id,
+      clientId: this.oauthConfig.clients[clientIndex].id,
       clientSecret: this.oauthConfig.accessTokenSecret,
-      expirySeconds: this.oauthConfig.clients[0].accessTokenExpirySeconds,
-      grants: this.oauthConfig.clients[0].grants,
+      expirySeconds: this.oauthConfig.clients[clientIndex].accessTokenExpirySeconds,
+      grants: this.oauthConfig.clients[clientIndex].grants,
     });
   }
 

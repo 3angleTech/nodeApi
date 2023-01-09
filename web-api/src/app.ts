@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/unbound-method */
 /**
  * @license
  * Copyright (c) 2019 THREEANGLE SOFTWARE SOLUTIONS SRL
@@ -14,6 +15,7 @@ import { IDatabaseContext } from './data';
 import { IHealthCheckController } from './modules/health-check';
 import { authenticatedUserMiddleware, IAuthController, ISandboxController, validAccessTokenMiddleware } from './modules/security';
 import { createExpressApplication, createExpressRouter } from './other/express.factory';
+import { version } from './version';
 
 export class App {
   public readonly express: Express;
@@ -33,11 +35,12 @@ export class App {
 
   /**
    * Configure server to deal with CORS.
-   * @see: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+   *
+   * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
    */
   private enableCORS(): void {
     this.express.all('/*', (req: Request, res: Response, next: NextFunction): void => {
-      const origin: string = <string>req.headers.origin || '*';
+      const origin: string = req.headers.origin || '*';
       res.header('Access-Control-Allow-Origin', origin);
       res.header('Access-Control-Allow-Credentials', 'true');
       res.header('Access-Control-Allow-Methods', 'POST,PUT,GET,DELETE');
@@ -72,6 +75,17 @@ export class App {
     this.express.use(json());
 
     this.express.use((req: Request, res: Response, next: NextFunction): void => {
+      res.header('X-WebApiVersion', version);
+      /**
+       * Expose the custom header to cross-origin requests.
+       *
+       * @see https://developer.mozilla.org/en-US/docs/Glossary/CORS-safelisted_response_header
+       */
+      res.header('Access-Control-Expose-Headers', 'X-WebApiVersion');
+      next();
+    });
+
+    this.express.use((req: Request, res: Response, next: NextFunction): void => {
       const appReq: AppRequest = req as AppRequest;
       appReq.getAppContext = (): AppContext => {
         return appReq.app.locals.appContext;
@@ -86,7 +100,6 @@ export class App {
     });
   }
 
-  // tslint:disable-next-line:max-func-body-length
   private registerRoutes(): void {
     const router: Router = createExpressRouter();
 

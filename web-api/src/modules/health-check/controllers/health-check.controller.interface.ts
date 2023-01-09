@@ -5,6 +5,7 @@
  */
 
 import { NextFunction } from 'express';
+
 import { AppRequest, AppResponse } from '../../../core';
 
 /**
@@ -13,6 +14,7 @@ import { AppRequest, AppResponse } from '../../../core';
 export interface IHealthCheckController {
   /**
    * Performs operations to report the health of the application.
+   *
    * @param req Request object data.
    * @param res Response object data.
    * @param next Middleware function to be called.
