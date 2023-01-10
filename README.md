@@ -88,3 +88,18 @@ To use SendGrid, you need to configure your API key. This is done with the follo
 echo "export SENDGRID_API_KEY='YOUR_API_KEY'" > sendgrid.env
 source ./sendgrid.env
 ```
+
+## SST
+
+SST makes it easy to build modern full-stack applications on AWS.
+
+* Lambdas, S3, Cron jobs, and SQS are examples of services supported by the SST API (see `SstStack.ts`)
+* For ECS cluster and services, not supported by its API, we use pure AWS SDK inside an SST stack (see `AwsCdkStack.ts`)
+
+See more documentation here https://docs.sst.dev/
+
+### Environment Variables
+
+In SST the environment variables are pulled from `.env` files.
+Variables specific per stage (e.g. `uat`, `prod`) will be placed in these files: `.env.{stage}`.
+View .env file examples in LastPass.

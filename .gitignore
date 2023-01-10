@@ -90,7 +90,10 @@ typings/
 # IDE configurations
 .idea/
 
-
 # Other
 .DS_STORE
 sendgrid.env
+
+# SST
+.build
+.sst

@@ -4,3 +4,7 @@ dist
 .nyc_output
 *.zip
 task.todo
+cdk.context.json
+.env
+.env.uat
+.env.prod
