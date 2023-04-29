@@ -48,7 +48,7 @@
     "path": "0.12.7",
     "pg": "8.8.0",
     "reflect-metadata": "0.1.13",
-    "sequelize": "5.22.5"
+    "sequelize": "6.29.0"
   },
   "devDependencies": {
     "@3angletech/eslint-config": "3.0.0-beta.5",
